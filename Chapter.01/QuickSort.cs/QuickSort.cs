@@ -54,11 +54,12 @@ namespace QuickSort.cs
             if (right - left < 2)
             {
                 if (left+1 == right &&
-                    items[left].CompareTo(items[right]) > 0)
-                    Swap(ref items[left], ref items[right]);
+                    items[left].CompareTo(items[right-1]) > 0)
+                    Swap(ref items[left], ref items[right-1]);
                 return;
             }
             int pivot = Partition(items, left, right);
+
             Task leftTask = Task.Run(() => QuickSort_Parallel(items, left, pivot));
             Task rightTask = Task.Run(() => QuickSort_Parallel(items, pivot + 1, right));
             Task.WaitAll(leftTask, rightTask);
@@ -75,8 +76,8 @@ namespace QuickSort.cs
             if (right - left < 2)
             {
                 if (left + 1 == right &&
-                    items[left].CompareTo(items[right]) > 0)
-                    Swap(ref items[left], ref items[right]);
+                    items[left].CompareTo(items[right-1]) > 0)
+                    Swap(ref items[left], ref items[right-1]);
                 return;
             }
             int pivot = Partition(items, left, right);

@@ -19,18 +19,7 @@ namespace QuickSort.cs
     {
         static void Main(string[] args)
         {
-            //BenchmarkRunner.Run<QuickSortRunner>();
-            var x = new QuickSortRunner();
-            var sw = new Stopwatch();
-
-            for (var c = 0; c < 5; c++)
-            {
-                sw.Restart();
-                x.QuickSortSequential();
-                sw.Stop();
-                Console.WriteLine($"completed in {sw.ElapsedMilliseconds}ms");
-            }
-
+            BenchmarkRunner.Run<QuickSortRunner>();
         }
     }
 
