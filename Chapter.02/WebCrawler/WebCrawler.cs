@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Functional.CSharp;
+using Utilities;
 
 namespace WebCrawler
 {
@@ -73,10 +74,6 @@ namespace WebCrawler
         public static Func<string, IEnumerable<string>> WebCrawlerMemoizedThreadSafe =
             Memoization.MemoizeThreadSafe<string, IEnumerable<string>>(WebCrawler);
 
-        
-        
-
-        
 
         public static void RunDemo()
         {
@@ -87,41 +84,50 @@ namespace WebCrawler
                 @"http://www.google.com"
             };
 
-            Demo.Benchmark("Listing 2.17 Web crawler execution", () =>
+            using (ExecutionTimer.New("Listing 2.17 Web crawler execution"))
             {
                 var webPageTitles = from url in urls //#B
-                                    from pageContent in WebCrawl(url)
+                                    from pageContent in WebCrawler(url)
                                     select ExtractWebPageTitle(pageContent);
 
                 Console.WriteLine($"Crawled {webPageTitles.Count()} page titles");
-            });
+            }
 
-            Demo.Benchmark("Listing 2.18 Web crawler execution using memoization", () =>
+            using (ExecutionTimer.New("Listing 2.18 Web crawler execution using memoization"))
             {
                 var webPageTitles = from url in urls //#B
                                     from pageContent in WebCrawlerMemoized(url)
                                     select ExtractWebPageTitle(pageContent);
 
                 Console.WriteLine($"Crawled {webPageTitles.Count()} page titles");
-            });
+            }
 
-            Demo.Benchmark("Listing 2.19 Web crawler query using PLINQ", () =>
+            using (ExecutionTimer.New("Listing 2.18 Web crawler execution using memoization"))
+            {
+                var webPageTitles = from url in urls //#B
+                                    from pageContent in WebCrawlerMemoized(url)
+                                    select ExtractWebPageTitle(pageContent);
+
+                Console.WriteLine($"Crawled {webPageTitles.Count()} page titles");
+            }
+
+            using (ExecutionTimer.New("Listing 2.19 Web crawler query using PLINQ"))
             {
                 var webPageTitles = from url in urls.AsParallel() //#A
                                     from pageContent in WebCrawlerMemoized(url)
                                     select ExtractWebPageTitle(pageContent);
 
                 Console.WriteLine($"Crawled {webPageTitles.Count()} page titles");
-            });
+            }
 
-            Demo.Benchmark("Listing 2.20 Thread-safe memoization function", () =>
+            using (ExecutionTimer.New("Listing 2.20 Thread-safe memoization function"))
             {
                 var webPageTitles = from url in urls.AsParallel()
                                     from pageContent in WebCrawlerMemoizedThreadSafe(url) //#B
                                     select ExtractWebPageTitle(pageContent);  //#C
 
                 Console.WriteLine($"Crawled {webPageTitles.Count()} page titles");
-            });
+            }
         }
     }
 }

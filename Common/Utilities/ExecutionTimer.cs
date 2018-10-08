@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace Utilities
 {
-    public class ExecutionTimer
+    public class ExecutionTimer : IDisposable
     {
         Stopwatch _watch;
         string _what;
@@ -11,6 +11,7 @@ namespace Utilities
 
         public ExecutionTimer(string activity, dynamic context = null)
         {
+            Console.WriteLine($"Starting activity '{activity}'");
             _watch = Stopwatch.StartNew();
             _what = activity;
             _context = context;
@@ -19,13 +20,10 @@ namespace Utilities
         public void Dispose()
         {
             _watch.Stop();
-            // Do something
+            Console.WriteLine($"Ending activity '{_what}'. Completed in {_watch.ElapsedMilliseconds} ms");
         }
-    }
 
-    public class ExecutionTimerFactory
-    {
-        public ExecutionTimer Create(string activity, dynamic context = null)
+        public static ExecutionTimer New(string activity, dynamic context = null)
         {
             return new ExecutionTimer(activity, context);
         }
