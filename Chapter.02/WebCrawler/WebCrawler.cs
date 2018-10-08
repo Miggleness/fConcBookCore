@@ -4,10 +4,11 @@ using System.Net;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Functional.CSharp;
 
 namespace WebCrawler
 {
-    public class WebCrawler
+    public class TheWebCrawler
     {
         List<string> urls = new List<string>
         {
@@ -17,29 +18,8 @@ namespace WebCrawler
             @"https://www.google.com"
         };
 
-        // Listing 2.17
-        public void StandardWebCrawler()
-        {
-            var webPageTitles = urls.Select(url => WebCrawl(url))
-                                    .SelectMany(contents => contents)
-                                    .Select(content => ExtractWebPageTitle(content));
-
-            foreach(var title in webPageTitles)
-            {
-                Console.WriteLine
-            }
-
-        }
-
-        // Listing 2.18 Web crawler execution using memoization
-        public static Func<string, IEnumerable<string>> WebCrawlerMemoized =
-            Memoization.Memoize<string, IEnumerable<string>>(WebCrawler); // #A
-
-        // Listing 2.20 Thread-safe memoization function
-        public static Func<string, IEnumerable<string>> WebCrawlerMemoizedThreadSafe =
-            Memoization.MemoizeThreadSafe<string, IEnumerable<string>>(WebCrawler);
-
-        public static IEnumerable<string> WebCrawl(string url) //#A
+        // Listing 2.16
+        public static IEnumerable<string> WebCrawler(string url) //#A
         {
             string content = GetWebContent(url);
             yield return content;
@@ -47,6 +27,7 @@ namespace WebCrawler
             foreach (string item in AnalyzeHtmlContent(content))
                 yield return GetWebContent(item);
         }
+
         private static string GetWebContent(string url)
         {
             using (var wc = new WebClient())
@@ -69,6 +50,33 @@ namespace WebCrawler
                 return regexTitle.Match(textPage).Groups["title"].Value;
             return "No Page Title Found!";
         }
+
+        // Listing 2.17
+        public void StandardWebCrawler()
+        {
+            var webPageTitles = urls.Select(url => WebCrawler(url))
+                                    .SelectMany(contents => contents)
+                                    .Select(content => ExtractWebPageTitle(content));
+
+            foreach(var webPageTitle in webPageTitles)
+            {
+                Console.WriteLine(webPageTitle);
+            }
+
+        }
+
+        // Listing 2.18 Web crawler execution using memoization
+        public static Func<string, IEnumerable<string>> WebCrawlerMemoized =
+            Memoization.Memoize<string, IEnumerable<string>>(WebCrawler); // #A
+
+        // Listing 2.20 Thread-safe memoization function
+        public static Func<string, IEnumerable<string>> WebCrawlerMemoizedThreadSafe =
+            Memoization.MemoizeThreadSafe<string, IEnumerable<string>>(WebCrawler);
+
+        
+        
+
+        
 
         public static void RunDemo()
         {

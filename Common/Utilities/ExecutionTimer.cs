@@ -19,7 +19,7 @@ namespace Utilities
         public void Dispose()
         {
             _watch.Stop();
-           // Do something
+            // Do something
         }
     }
 
