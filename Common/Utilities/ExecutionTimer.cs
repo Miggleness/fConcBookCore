@@ -3,29 +3,41 @@ using System.Diagnostics;
 
 namespace Utilities
 {
-    public class ExecutionTimer : IDisposable
+    public class Demo
     {
-        Stopwatch _watch;
-        string _what;
-        object _context;
-
-        public ExecutionTimer(string activity, dynamic context = null)
+        public static void TimeTask(string activityName, Action action)
         {
-            Console.WriteLine($"Starting activity '{activity}'");
-            _watch = Stopwatch.StartNew();
-            _what = activity;
-            _context = context;
+            Console.WriteLine($"========================= BEGIN =========================");
+            Console.WriteLine($"------------------ '{activityName}'");
+            var sw = Stopwatch.StartNew();
+
+            try
+            {
+                action();
+            }
+            finally
+            {
+
+                sw.Stop();
+                Console.WriteLine($"Ending activity '{activityName}'. Completed in {sw.ElapsedMilliseconds} ms");
+                Console.WriteLine($"<------------------------ END -------------------------->");
+                Console.WriteLine();
+            }
         }
 
-        public void Dispose()
+        public static void TimeStep(string step, Action action)
         {
-            _watch.Stop();
-            Console.WriteLine($"Ending activity '{_what}'. Completed in {_watch.ElapsedMilliseconds} ms");
-        }
+            var sw = Stopwatch.StartNew();
 
-        public static ExecutionTimer New(string activity, dynamic context = null)
-        {
-            return new ExecutionTimer(activity, context);
+            try
+            {
+                action();
+            }
+            finally
+            {
+                sw.Stop();
+                Console.WriteLine($"Step '{step}' took {sw.ElapsedMilliseconds} ms");
+            }
         }
     }
 }
