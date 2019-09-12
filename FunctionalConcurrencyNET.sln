@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter.01", "Chapter.01", "{391C3530-6455-4052-B38B-38FBAE86B636}"
 EndProject
@@ -15,9 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCrawler", "Chapter.02\We
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{2533B5C9-01A5-4C88-8C64-9101E9616E78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Functional.CSharp", "Common\Functional.CSharp\Functional.CSharp.csproj", "{9621F26C-FB05-4B48-B78D-175B35CDA6C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Functional.CSharp", "Common\Functional.CSharp\Functional.CSharp.csproj", "{9621F26C-FB05-4B48-B78D-175B35CDA6C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Common\Utilities\Utilities.csproj", "{D3987D42-F564-4A08-8774-93A741F051F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities", "Common\Utilities\Utilities.csproj", "{D3987D42-F564-4A08-8774-93A741F051F8}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FunctionalTechniques.FSharp", "Chapter.02\FunctionalTechniques.FSharp\FunctionalTechniques.FSharp.fsproj", "{E35EA680-DE95-41D7-A2B0-CE6DB80F37E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +91,18 @@ Global
 		{D3987D42-F564-4A08-8774-93A741F051F8}.Release|x64.Build.0 = Release|Any CPU
 		{D3987D42-F564-4A08-8774-93A741F051F8}.Release|x86.ActiveCfg = Release|Any CPU
 		{D3987D42-F564-4A08-8774-93A741F051F8}.Release|x86.Build.0 = Release|Any CPU
+		{E35EA680-DE95-41D7-A2B0-CE6DB80F37E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E35EA680-DE95-41D7-A2B0-CE6DB80F37E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E35EA680-DE95-41D7-A2B0-CE6DB80F37E8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E35EA680-DE95-41D7-A2B0-CE6DB80F37E8}.Debug|x64.Build.0 = Debug|Any CPU
+		{E35EA680-DE95-41D7-A2B0-CE6DB80F37E8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E35EA680-DE95-41D7-A2B0-CE6DB80F37E8}.Debug|x86.Build.0 = Debug|Any CPU
+		{E35EA680-DE95-41D7-A2B0-CE6DB80F37E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E35EA680-DE95-41D7-A2B0-CE6DB80F37E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E35EA680-DE95-41D7-A2B0-CE6DB80F37E8}.Release|x64.ActiveCfg = Release|Any CPU
+		{E35EA680-DE95-41D7-A2B0-CE6DB80F37E8}.Release|x64.Build.0 = Release|Any CPU
+		{E35EA680-DE95-41D7-A2B0-CE6DB80F37E8}.Release|x86.ActiveCfg = Release|Any CPU
+		{E35EA680-DE95-41D7-A2B0-CE6DB80F37E8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +112,7 @@ Global
 		{4F15BE16-E1DE-4B85-AD96-FB58F6F28248} = {E883C1EE-EAB5-45EC-BCE0-1CD24FF4CC72}
 		{9621F26C-FB05-4B48-B78D-175B35CDA6C0} = {2533B5C9-01A5-4C88-8C64-9101E9616E78}
 		{D3987D42-F564-4A08-8774-93A741F051F8} = {2533B5C9-01A5-4C88-8C64-9101E9616E78}
+		{E35EA680-DE95-41D7-A2B0-CE6DB80F37E8} = {E883C1EE-EAB5-45EC-BCE0-1CD24FF4CC72}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C2DD8906-2FC8-41C6-BDEE-EC70ACC9F076}
